@@ -1,3 +1,14 @@
+# 🛑 AgentBreaker: Multi-Agent Algorithmic Loop Interceptor
+
+An ultra-lightweight, sub-millisecond cryptographic safety shim designed to prevent cascading autonomous AI agent loops, rogue transactional cycles, and automated financial panic spirals at the network boundary.
+
+## ⚖️ Commercial Enterprise Inquiries
+This project is protected under the Business Source License 1.1 (BSL 1.1). Commercial production scale deployments handling greater than 50 concurrent autonomous agents or over $10,000 in monthly transaction volume require a commercial enterprise agreement license.
+
+For production licensing, custom multi-cloud cloud infrastructure blueprints, or strategic procurement inquiries, contact our corporate gateway directly:
+📩 mahima.saigal@gmail.com
+
+
 import os
 import hmac
 import hashlib
