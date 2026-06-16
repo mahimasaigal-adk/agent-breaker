@@ -3,12 +3,15 @@
 An ultra-lightweight, sub-millisecond cryptographic safety shim designed to prevent cascading autonomous AI agent loops, rogue transactional cycles, and automated financial panic spirals at the network boundary.
 
 ## ⚖️ Commercial Enterprise Inquiries
-This project is protected under the Business Source License 1.1 (BSL 1.1). Commercial production scale deployments handling greater than 50 concurrent autonomous agents or over $10,000 in monthly transaction volume require a commercial enterprise agreement license.
+This project is protected under the Business Source License 1.1 (BSL 1.1). Commercial production scale deployments handling greater than 50 concurrent autonomous agents or over \$10,000 in monthly transaction volume require a commercial enterprise agreement license.
 
 For production licensing, custom multi-cloud cloud infrastructure blueprints, or strategic procurement inquiries, contact our corporate gateway directly:
-📩 mahima.saigal@gmail.com
+📩 [YOUR_EMAIL_ADDRESS@DOMAIN.com]
 
+## 🛠️ Core Proxy Logic Gateway Code
+Below is the deployment python runtime engine for your secure internal network infrastructure routing:
 
+```python
 import os
 import hmac
 import hashlib
@@ -59,3 +62,4 @@ async def intercept_and_enforce(
     if is_blocked:
         raise HTTPException(status_code=423, detail=message)
     return {"status": "SUCCESS", "message": "Transaction verified and routed securely."}
+```
