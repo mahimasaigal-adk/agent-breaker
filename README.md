@@ -6,7 +6,7 @@ An ultra-lightweight, sub-millisecond cryptographic safety shim designed to prev
 This project is protected under the Business Source License 1.1 (BSL 1.1). Commercial production scale deployments handling greater than 50 concurrent autonomous agents or over \$10,000 in monthly transaction volume require a commercial enterprise agreement license.
 
 For production licensing, custom multi-cloud cloud infrastructure blueprints, or strategic procurement inquiries, contact our corporate gateway directly:
-📩 [YOUR_EMAIL_ADDRESS@DOMAIN.com]
+📩 mahima.saigal@gmail.com
 
 ## 🛠️ Core Proxy Logic Gateway Code
 Below is the deployment python runtime engine for your secure internal network infrastructure routing:
