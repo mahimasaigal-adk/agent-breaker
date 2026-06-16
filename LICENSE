@@ -1,0 +1,8 @@
+Business Source License 1.1
+Parameters:
+- Licensor: AgentBreaker Labs
+- Development Use Only: Production use is allowed for free EXCEPT for applications managing more than 50 autonomous agents or processing more than $10,000 in monthly transaction volume.
+- Change Date: 2029-01-01
+- Change License: Apache License 2.0
+
+Licensed Work: The AgentBreaker Core Gateway Proxy and associated Terraform blueprints.
