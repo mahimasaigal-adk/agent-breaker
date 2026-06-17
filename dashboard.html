@@ -4,129 +4,116 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AgentBreaker Enterprise Console</title>
-    <!-- Tailwind CSS for modern C-Suite UI styling -->
-    <script src="https://tailwindcss.com"></script>
-    <!-- React and Babel via CDN for 0-cost infrastructure hosting -->
-    <script src="https://unpkg.com" crossorigin></script>
-    <script src="https://unpkg.com" crossorigin></script>
-    <script src="https://unpkg.com"></script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; font-family: sans-serif; margin: 0; padding: 0; }
+        header { background-color: #020617; border-bottom: 1px solid #1e293b; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
+        h1 { margin: 0; font-size: 20px; color: #f87171; letter-spacing: -0.5px; }
+        .subtitle { font-size: 11px; color: #64748b; font-weight: normal; }
+        .email { font-family: monospace; color: #94a3b8; font-size: 14px; }
+        main { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 30px; }
+        .card { background-color: #020617; border: 1px solid #1e293b; padding: 20px; rounded-radius: 8px; border-radius: 12px; }
+        .card-title { font-size: 12px; color: #94a3b8; text-transform: uppercase; margin: 0 0 10px 0; letter-spacing: 1px; }
+        .card-value { font-size: 28px; font-weight: bold; font-family: monospace; margin: 0; }
+        .card-unit { font-size: 12px; color: #64748b; font-weight: normal; }
+        .alert { border-color: rgba(239, 68, 68, 0.2); background: linear-gradient(135deg, #020617, rgba(239, 68, 68, 0.05)); color: #ef4444; }
+        .savings { border-color: rgba(16, 185, 129, 0.2); background: linear-gradient(135deg, #020617, rgba(16, 185, 129, 0.05)); color: #10b981; }
+        .ledger-box { background-color: #020617; border: 1px solid #1e293b; border-radius: 12px; overflow: hidden; }
+        .ledger-header { padding: 15px 20px; border-b: 1px solid #1e293b; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; }
+        .ledger-title { margin: 0; font-size: 16px; font-weight: bold; }
+        .latency { font-size: 12px; color: #64748b; font-family: monospace; }
+        table { w-index: 100; width: 100%; border-collapse: collapse; text-align: left; font-family: monospace; font-size: 14px; }
+        th { background-color: rgba(15, 23, 42, 0.4); padding: 12px 20px; color: #94a3b8; font-size: 11px; text-transform: uppercase; border-bottom: 1px solid #1e293b; }
+        td { padding: 15px 20px; border-bottom: 1px solid rgba(30, 41, 59, 0.5); }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; }
+        .badge-allowed { background-color: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.2); }
+        .badge-blocked { background-color: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); }
+        .reason-text { font-size: 12px; color: #64748b; }
+        .reason-alert { font-size: 12px; color: #ef4444; font-weight: bold; }
+    </style>
 </head>
-<body class="bg-slate-900 text-slate-100 font-sans antialiased">
+<body>
 
-    <div id="root"></div>
+    <header>
+        <div>
+            <h1>🛑 AgentBreaker <span class="subtitle">ENTERPRISE CONSOLE</span></h1>
+        </div>
+        <div class="email">mahima.saigal@gmail.com</div>
+    </header>
 
-    <script type="text/babel">
-        function Dashboard() {
-            // Mocking live cluster database data state
-            const [metrics, setMetrics] = React.useState({
-                activeAgents: 42,
-                totalRequestsProcessed: 14285,
-                blockedLoops: 14,
-                estimatedSavingsINR: 345000,
-                avgLatencyMs: 0.42
-            });
+    <main>
+        <div class="grid">
+            <div class="card">
+                <p class="card-title">Protected Fleet Size</p>
+                <p class="card-value">42 <span class="card-unit">Agents</span></p>
+            </div>
+            <div class="card">
+                <p class="card-title">Total Evaluated Traffic</p>
+                <p class="card-value">14,285</p>
+            </div>
+            <div class="card alert">
+                <p class="card-title" style="color: #ef4444;">Intercepted AI Panic Loops</p>
+                <p class="card-value">14</p>
+            </div>
+            <div class="card savings">
+                <p class="card-title" style="color: #10b981;">Hard Cloud Capital Saved</p>
+                <p class="card-value">递3,45,000</p>
+            </div>
+        </div>
 
-            const [logs, setLogs] = React.useState([
-                { id: "TX-901", time: "09:21:04", agent: "finance_bot_01", action: "liquidate_positions", status: "BLOCKED", reason: "Multi-Agent Loop Velocity Overload" },
-                { id: "TX-900", time: "09:21:02", agent: "finance_bot_01", action: "liquidate_positions", status: "ALLOWED", reason: "Passed Clear" },
-                { id: "TX-899", time: "09:20:55", agent: "legal_draft_bot", action: "generate_contract_v4", status: "ALLOWED", reason: "Passed Clear" },
-                { id: "TX-898", time: "09:18:12", agent: "supply_chain_v2", action: "reorder_fuel_tokens", status: "BLOCKED", reason: "Recursive Payload Hashing Flagged" },
-                { id: "TX-897", time: "09:15:43", agent: "customer_support_6", action: "route_ticket_escalation", status: "ALLOWED", reason: "Passed Clear" }
-            ]);
+        <div class="ledger-box">
+            <div class="ledger-header">
+                <h3 class="ledger-title">Real-Time Threat Enforcement Ledger</h3>
+                <span class="latency">Gateway Latency Overhead: <strong style="color: #fbbf24;">0.42ms</strong></span>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Transaction ID</th>
+                        <th>Origin Agent</th>
+                        <th>Payload Action Signature</th>
+                        <th>Boundary Status</th>
+                        <th>Enforcement Reason</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="color: #64748b;">09:21:04</td>
+                        <td style="color: #cbd5e1;">TX-901</td>
+                        <td style="color: #60a5fa;">@finance_bot_01</td>
+                        <td style="color: #94a3b8;">liquidate_positions</td>
+                        <td><span class="badge badge-blocked">BLOCKED</span></td>
+                        <td class="reason-alert">Multi-Agent Loop Velocity Overload</td>
+                    </tr>
+                    <tr>
+                        <td style="color: #64748b;">09:21:02</td>
+                        <td style="color: #cbd5e1;">TX-900</td>
+                        <td style="color: #60a5fa;">@finance_bot_01</td>
+                        <td style="color: #94a3b8;">liquidate_positions</td>
+                        <td><span class="badge badge-allowed">ALLOWED</span></td>
+                        <td class="reason-text">Passed Clear</td>
+                    </tr>
+                    <tr>
+                        <td style="color: #64748b;">09:20:55</td>
+                        <td style="color: #cbd5e1;">TX-899</td>
+                        <td style="color: #60a5fa;">@legal_draft_bot</td>
+                        <td style="color: #94a3b8;">generate_contract_v4</td>
+                        <td><span class="badge badge-allowed">ALLOWED</span></td>
+                        <td class="reason-text">Passed Clear</td>
+                    </tr>
+                    <tr>
+                        <td style="color: #64748b;">09:18:12</td>
+                        <td style="color: #cbd5e1;">TX-898</td>
+                        <td style="color: #60a5fa;">@supply_chain_v2</td>
+                        <td style="color: #94a3b8;">reorder_fuel_tokens</td>
+                        <td><span class="badge badge-blocked">BLOCKED</span></td>
+                        <td class="reason-alert">Recursive Payload Hashing Flagged</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
 
-            return (
-                <div class="min-h-screen flex flex-col">
-                    <!-- Top Navigation Bar -->
-                    <header class="bg-slate-950 border-b border-slate-800 px-8 py-4 flex justify-between items-center">
-                        <div class="flex items-center space-x-3">
-                            <span class="text-2xl">🛑</span>
-                            <h1 class="text-xl font-bold tracking-tight bg-gradient-to-r from-red-400 to-amber-400 bg-clip-text text-transparent">
-                                AgentBreaker <span class="text-sm font-semibold text-slate-500 tracking-normal">ENTERPRISE CONSOLE</span>
-                            </h1>
-                        </div>
-                        <div class="flex items-center space-x-4">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                                <span class="w-1.5 h-1.5 mr-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                                CLUSTER ACTIVE
-                            </span>
-                            <span class="text-sm text-slate-400 font-mono">mahima.saigal@gmail.com</span>
-                        </div>
-                    </header>
-
-                    <!-- Main Dashboard Content Window -->
-                    <main class="flex-1 p-8 max-w-7xl w-full mx-auto space-y-8">
-                        
-                        <!-- Row 1: Executive KPI Stat Cards -->
-                        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                            <div class="bg-slate-950 border border-slate-800 p-6 rounded-xl space-y-2">
-                                <p class="text-sm font-medium text-slate-400 uppercase tracking-wider">Protected Fleet Size</p>
-                                <p class="text-3xl font-bold font-mono text-slate-100">{metrics.activeAgents} <span class="text-sm font-normal text-slate-500">Autonomous Agents</span></p>
-                            </div>
-                            <div class="bg-slate-950 border border-slate-800 p-6 rounded-xl space-y-2">
-                                <p class="text-sm font-medium text-slate-400 uppercase tracking-wider">Total Evaluated Traffic</p>
-                                <p class="text-3xl font-bold font-mono text-slate-100">{metrics.totalRequestsProcessed.toLocaleString()}</p>
-                            </div>
-                            <div class="bg-slate-950 border border-slate-500/20 p-6 rounded-xl space-y-2 relative overflow-hidden bg-gradient-to-br from-slate-950 to-red-950/20">
-                                <p class="text-sm font-medium text-red-400 uppercase tracking-wider">Intercepted AI Panic Loops</p>
-                                <p class="text-3xl font-bold font-mono text-red-500">{metrics.blockedLoops}</p>
-                            </div>
-                            <div class="bg-slate-950 border border-emerald-500/20 p-6 rounded-xl space-y-2 bg-gradient-to-br from-slate-950 to-emerald-950/20">
-                                <p class="text-sm font-medium text-emerald-400 uppercase tracking-wider">Hard Cloud Capital Saved</p>
-                                <p class="text-3xl font-bold font-mono text-emerald-400">₹{metrics.estimatedSavingsINR.toLocaleString()}</p>
-                            </div>
-                        </div>
-
-                        <!-- Row 2: Live Network Boundary Traffic Ledger -->
-                        <div class="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden">
-                            <div class="px-6 py-4 border-b border-slate-800 bg-slate-950/50 flex justify-between items-center">
-                                <h3 class="font-semibold text-slate-200">Real-Time Threat Enforcement Ledger</h3>
-                                <p class="text-xs text-slate-500 font-mono">Gateway Node Latency Overhead: <span class="text-amber-400 font-bold">{metrics.avgLatencyMs}ms</span></p>
-                            </div>
-                            <div class="overflow-x-auto">
-                                <table class="w-full text-left border-collapse">
-                                    <thead>
-                                        <tr class="border-b border-slate-800 text-xs font-semibold uppercase tracking-wider text-slate-400 bg-slate-900/40">
-                                            <th class="px-6 py-3">Timestamp</th>
-                                            <th class="px-6 py-3">Transaction ID</th>
-                                            <th class="px-6 py-3">Origin Agent Entity</th>
-                                            <th class="px-6 py-3">Payload Action Signature</th>
-                                            <th class="px-6 py-3">Boundary Status</th>
-                                            <th class="px-6 py-3">Enforcement Reason</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-slate-800/60 font-mono text-sm">
-                                        {logs.map(log => (
-                                            <tr key={log.id} class="hover:bg-slate-900/30 transition-colors">
-                                                <td class="px-6 py-4 text-slate-500">{log.time}</td>
-                                                <td class="px-6 py-4 text-slate-300 font-medium">{log.id}</td>
-                                                <td class="px-6 py-4 text-blue-400">@{log.agent}</td>
-                                                <td class="px-6 py-4 text-slate-400 max-w-xs truncate">{log.action}</td>
-                                                <td class="px-6 py-4">
-                                                    <span class={`inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold ${
-                                                        log.status === 'ALLOWED' 
-                                                            ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' 
-                                                            : 'bg-red-500/10 text-red-400 border border-red-500/20 animate-pulse'
-                                                    }`}>
-                                                        {log.status}
-                                                    </span>
-                                                </td>
-                                                <td class={`px-6 py-4 text-xs ${log.status === 'ALLOWED' ? 'text-slate-500' : 'text-red-400 font-bold'}`}>
-                                                    {log.reason}
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                    </main>
-                </div>
-            );
-        }
-
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<Dashboard />);
-    </script>
 </body>
 </html>
