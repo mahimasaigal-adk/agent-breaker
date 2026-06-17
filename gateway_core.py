@@ -13,6 +13,7 @@ app = FastAPI(title="AgentBreaker-Enterprise-Cluster-Gateway")
 anthropic_client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY", "your-api-key-here"))
 
 # Initialize the Centralized Enterprise Shared-State Database
+# Connects to an ultra-fast Redis cluster running securely on port 6379
 redis_client = redis.Redis(host='localhost', port=6379, decode_responses=True)
 
 # Cryptographic master verification key anchors
@@ -23,7 +24,7 @@ class ClusterCircuitBreaker:
         self.time_window_seconds = 5.0  # 5-second lookback security window
         self.max_allowed_triggers = 3   # Drops execution immediately on the 4th matching signature
 
-    def verify_agent_identity(self, agent_id: str, prompt_payload: str, signature: str) -> bool:
+    def verify_agent_integrity(self, agent_id: str, prompt_payload: str, signature: str) -> bool:
         """Deterministic identity validation blocking malicious external injections."""
         message_bytes = f"{agent_id}:{prompt_payload}".encode('utf-8')
         expected_signature = hmac.new(AABC_SECRET_KEY, message_bytes, hashlib.sha256).hexdigest()
